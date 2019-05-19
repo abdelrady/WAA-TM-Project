@@ -16,9 +16,9 @@ import java.util.Set;
 public class Student {
 
     @Id
-    private String mumId;
+    private Long mumId;
 
-    @Column
+    @Column // MM-YY
     private String entry;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -26,6 +26,7 @@ public class Student {
     private User user;
 
     @ManyToMany(cascade = { CascadeType.MERGE })
+    @JoinTable(name = "students_block_courses", joinColumns = {@JoinColumn(name = "student_id")}, inverseJoinColumns = {@JoinColumn(name = "course_block_id")})
     private List<CourseBlock> courses;
 
     @OneToMany(mappedBy = "student")

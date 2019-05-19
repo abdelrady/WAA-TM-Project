@@ -35,7 +35,7 @@ public class CourseBlock {
     @JoinColumn
     private Professor professor;
 
-    @ManyToMany(cascade = { CascadeType.MERGE })
+    @ManyToMany(cascade = { CascadeType.MERGE }, mappedBy = "courses")
     private List<Student> students;
 
 }

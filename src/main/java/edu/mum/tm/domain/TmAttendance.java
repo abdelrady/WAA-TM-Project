@@ -38,7 +38,7 @@ public class TmAttendance {
     @JoinColumn(name = "block_id")
     private Block block;
 
-    @ManyToMany(cascade = { CascadeType.MERGE })
-    private List<CourseBlock> courses;
+//    @ManyToMany(cascade = { CascadeType.MERGE })
+//    private List<CourseBlock> courses;
 
 }
