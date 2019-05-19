@@ -24,6 +24,9 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private DataSource dataSource;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -37,7 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
+        auth.jdbcAuthentication()
+                .usersByUsernameQuery(usersQuery)
+                .authoritiesByUsernameQuery(rolesQuery)
+                .dataSource(dataSource)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -52,14 +59,44 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // TODO remove below line and apply explicit permissions
         //http.authorizeRequests().antMatchers("/**").permitAll();
 
+        http.authorizeRequests().antMatchers("/h2-console/**").permitAll();
+
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/h2_console/**").permitAll();
+                .antMatchers( "/","/error","/login","/logout", "/h2-console/**").permitAll()
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/faculty/**").hasAuthority("FACULTY")
+                .antMatchers("/student/**").hasAuthority("STUDENT")
+                .anyRequest().authenticated() //all other urls can be access by any authenticated role
+                .and()
+                .formLogin() //enable form login instead of basic login
+                .loginPage("/login")
+                .failureUrl("/login-error")
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/checkRole")
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .and().csrf()
+                .ignoringAntMatchers("/h2-console/**") //don't apply CSRF protection to /h2-console
+                .and()
+                .exceptionHandling().accessDeniedPage("/error/access-denied")
+                .and().rememberMe().rememberMeParameter("remember-me").tokenRepository(tokenRepository())
+        ;
+        http.rememberMe().rememberMeParameter("remember-me").key("uniqueAndSecret");
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
 
     }
 
+
+    @Bean
+    public PersistentTokenRepository tokenRepository() {
+        JdbcTokenRepositoryImpl jdbcTokenRepositoryImpl=new JdbcTokenRepositoryImpl();
+        jdbcTokenRepositoryImpl.setDataSource(dataSource);
+        return jdbcTokenRepositoryImpl;
+    }
 }
 

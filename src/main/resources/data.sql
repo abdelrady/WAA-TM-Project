@@ -1,10 +1,25 @@
-INSERT INTO Role VALUES (1, 'ADMIN');
-INSERT INTO Role VALUES (2, 'Professor');
-INSERT INTO Role VALUES (3, 'Student');
+create table if not exists persistent_logins (
+                                               username varchar_ignorecase(100) not null,
+                                               series varchar(64) primary key,
+                                               token varchar(64) not null,
+                                               last_used timestamp not null
+);
 
-INSERT INTO User(user_id,active, email, name, last_name, password) values(1,1, 'atantawy@mum.edu', 'Abdelrady', 'Tantawy', '$2a$10$ZgRPJUO7A37cnK1ALVdfZuCsGBOSpYm4Rcs6jR2GVSKccok6iYnM6');
-INSERT INTO User(user_id,active, email, name, last_name, password) values(2,1, 'rxing@mum.edu', 'Tina', 'Xing', '$2a$10$ZgRPJUO7A37cnK1ALVdfZuCsGBOSpYm4Rcs6jR2GVSKccok6iYnM6');
-INSERT INTO User(user_id,active, email, name, last_name, password) values(3,1, 'jbreun@mum.edu', 'Joe', 'Breun', '$2a$10$ZgRPJUO7A37cnK1ALVdfZuCsGBOSpYm4Rcs6jR2GVSKccok6iYnM6');
+INSERT INTO Role VALUES (1, 'ADMIN');
+
+INSERT INTO Role VALUES (2, 'FACULTY');
+INSERT INTO Role VALUES (3, 'STUDENT');
+
+INSERT INTO User(user_id,active, email, name, last_name, password) values(1,1, 'atantawy@mum.edu', 'Abdelrady', 'Tantawy', '$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+INSERT INTO User(user_id,active, email, name, last_name, password) values(2,1, 'rxing@mum.edu', 'Tina', 'Xing', '$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+INSERT INTO User(user_id,active, email, name, last_name, password) values(3,1, 'jbreun@mum.edu', 'Joe', 'Breun', '$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+INSERT INTO User(user_id,active, email, name, last_name, password) values(4,1, 'ehassan@mum.edu', 'Eman', 'Hassan', '$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+
+INSERT into USER_ROLE values (1,3);
+INSERT into USER_ROLE values (2,2);
+INSERT into USER_ROLE values (3,3);
+INSERT into USER_ROLE values (4,1);
+
 
 INSERT INTO Student VALUES (986834, '11-18', 1);
 
@@ -84,3 +99,4 @@ INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES
 INSERT INTO Entry (id, date_entry) VALUES (1, '2018-08-08');
 INSERT INTO Entry (id, date_entry) VALUES (2, '2018-11-08');
 INSERT INTO Entry (id, date_entry) VALUES (3, '2019-02-08');
+
