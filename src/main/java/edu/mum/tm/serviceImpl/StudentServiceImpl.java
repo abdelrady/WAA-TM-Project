@@ -24,6 +24,8 @@ public class StudentServiceImpl implements StudentService {
         Long totalSessions = studentRepository.getStudentTotalBlockSessions(studentId);
         stats.setTotalSessions(totalSessions);
 
+        //Long totalSessionsAttended = studentRepository.getStudentAttendedSessions(studentId);
+
         return stats;
     }
 }
