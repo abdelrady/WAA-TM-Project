@@ -25,3 +25,6 @@ INSERT INTO COURSE_BLOCK(Id, Block_id, Course_id, Professor_id) values(2, 1, 2, 
 INSERT INTO COURSE_BLOCK(Id, Block_id, Course_id, Professor_id) values(3, 2, 3, 2);
 INSERT INTO COURSE_BLOCK(Id, Block_id, Course_id, Professor_id) values(4, 2, 4, 1);
 
+INSERT INTO Entry (id, date_entry) VALUES (1, '2018-08-08');
+INSERT INTO Entry (id, date_entry) VALUES (2, '2018-11-08');
+INSERT INTO Entry (id, date_entry) VALUES (3, '2019-02-08');

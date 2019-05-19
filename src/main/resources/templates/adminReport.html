@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      <title>Admin Report</title>
+      </head>
+<body>
+<div class="container text-center">
+	<h2 class = "text-primary">This is the Generate Attendance report by entry</h2>
+
+	<form id="adminReport" action="#" th:action="@{/admin/report}"
+		th:object="${newEntry}" method="post">
+		<p>
+			<label>Entry: </label> <select id="dropEntry" size="1"
+				th:field="*{id}">
+				<option th:each="entry : ${entries}" th:value="${entry.id}"
+					th:text="${entry.dateEntry}"></option>
+			</select>
+		</p>
+
+		<button class="btn btn-default btn-lgtext-center" type="Submit">Get data</button><br><br>
+	</form>
+	<br><br>
+	<br />
+	<table class="table table-striped">
+		<tr>
+			<th>Student ID</th>
+			<th>Student Name</th>
+			<th>Total sessions possible</th>
+			<th>Total sessions attended</th>
+			<th>Percent</th>
+		</tr>
+		<tr th:each="report : ${reports}">
+			<td th:text="${report.student.studentID}"></td>
+			<td th:text="${report.student.FullName}"></td>
+			<td th:text="${report.totalSessionsPossible}"></td>
+			<td th:text="${report.totalSessionsAttended}"></td>
+			<td th:text="${report.percent}"></td>
+		</tr>
+	</table>
+	<br />
+
+		<div class="col-md-8 col-sm-offset-2 text-center">
+		<form th:action="@{/home}" method="get">
+		<button class="btn btn-link btn-lg" type="Submit">Go To Home Page</button>
+		</form>
+		</div>
+</div>
+</body>
+</html>
