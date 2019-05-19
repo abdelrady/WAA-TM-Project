@@ -7,8 +7,6 @@ import java.util.Dictionary;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class StudentBlockData {
     private Long studentId;
 

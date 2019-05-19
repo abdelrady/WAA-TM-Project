@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layouts/dashboard_layout}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student TM Report</title>
+</head>
+<body>
+
+<div class="col" layout:fragment="main-content">
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td>Total sessions possible</td>
+            <td th:text="${studemt.}"></td>
+        </tr>
+        <tr>
+            <td>Total sessions attended</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Percent attendance</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
