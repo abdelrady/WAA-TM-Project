@@ -11,15 +11,15 @@
         <tbody>
         <tr>
             <td>Total sessions possible</td>
-            <td th:text="${studemt.}"></td>
+            <td th:text="${student.totalSessions}"></td>
         </tr>
         <tr>
             <td>Total sessions attended</td>
-            <td></td>
+            <td th:text="${student.sessionsAttended}"></td>
         </tr>
         <tr>
             <td>Percent attendance</td>
-            <td></td>
+            <td th:text="${student.attendedSessionsPercentage}">%</td>
         </tr>
         </tbody>
     </table>

@@ -17,7 +17,10 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
             "where S.MUM_ID = :studentId")
     Long getStudentTotalBlockSessions(Long studentId);
 
-    //Long getStudentAttendedSessions(Long studentId);
+    @Query(nativeQuery = true, value = "SELECT COUNT(TMA.STUDENT_ID) FROM TM_ATTENDANCE TMA\n" +
+            "where TMA.STUDENT_ID = :studentId\n" +
+            "group by TMA.STUDENT_ID")
+    Long getStudentAttendedSessions(Long studentId);
 
     //Long getStudentTotalBlockSessions(Long studentId);
 }

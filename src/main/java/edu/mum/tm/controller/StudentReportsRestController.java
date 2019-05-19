@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/students/reports")
+@RequestMapping(value = "/students/reports/rest")
 public class StudentReportsRestController {
 
     @Autowired

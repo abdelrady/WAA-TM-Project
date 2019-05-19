@@ -24,7 +24,10 @@ public class StudentServiceImpl implements StudentService {
         Long totalSessions = studentRepository.getStudentTotalBlockSessions(studentId);
         stats.setTotalSessions(totalSessions);
 
-        //Long totalSessionsAttended = studentRepository.getStudentAttendedSessions(studentId);
+        Long totalSessionsAttended = studentRepository.getStudentAttendedSessions(studentId);
+        stats.setSessionsAttended(totalSessionsAttended);
+
+        stats.setAttendedSessionsPercentage(totalSessionsAttended * 100 / totalSessions);
 
         return stats;
     }
