@@ -33,6 +33,6 @@ public class Block {
     @Column
     private String MMYY;
 
-    @OneToMany(mappedBy = "block")
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE}, mappedBy = "block")
     private List<TmAttendance> tmAttendences;
 }

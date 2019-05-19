@@ -18,6 +18,7 @@ package edu.mum.tm.domain;
 public class TmAttendance {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -34,7 +35,7 @@ public class TmAttendance {
     @Column()
     private String location;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "block_id")
     private Block block;
 
