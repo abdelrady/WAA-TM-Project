@@ -7,6 +7,8 @@ import lombok.*;
 @AllArgsConstructor
 public class StudentTotalStats {
 
+    private Long mumId;
+
     private Long totalSessions;
 
     private Long sessionsAttended;

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @SessionAttributes({"user", "loggedPerson"})
@@ -84,7 +85,7 @@ public class AdminController {
 //        System.out.println("totalSessionsPossible = " + totalSessionsPossible);
 //        System.out.println("entry date = " + entry.getDateEntry());
 //
-        return "adminReport";
-    }
+//        return "adminReport";
+//    }
 
 }

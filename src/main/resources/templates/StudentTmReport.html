@@ -3,10 +3,13 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Student TM Report</title>
+
 </head>
 <body>
 
-<div class="col" layout:fragment="main-content">
+<div class="col" layout:fragment="main-content" th:class="main-content">
+    <h2>Cumulative attendance info</h2>
+    <input type="hidden" th:value="${student.mumId}" class="student-id"/>
     <table class="table table-striped">
         <tbody>
         <tr>
@@ -23,7 +26,40 @@
         </tr>
         </tbody>
     </table>
-</div>
+    <table>
+        <tbody>
+        <tr>
+            <td>Select Block</td>
+            <td>
+                <select id="blocks-select">
+                    <option value="">Select Block</option>
+                    <option th:attr="data-sessions=${b.totalSessions}" th:each="b : ${blocks}" th:value="${b.id}" th:text="${b.MMYY}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Sessions in block</td>
+            <td class="block-sessions"></td>
+        </tr>
+        <tr>
+            <td>Days present</td>
+            <td class="present-days"></td>
+        </tr>
+        <tr>
+            <td>Percentage attended</td>
+            <td class="block-percentage"></td>
+        </tr>
 
+        <tr>
+            <td>Extra credit points</td>
+            <td class="extra-credits"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="results">
+    </div>
+    <script type="text/javascript" th:src="@{/js/helpers.js}"></script>
+    <script type="text/javascript" th:src="@{/js/student-report.js}"></script>
+</div>
 </body>
 </html>
