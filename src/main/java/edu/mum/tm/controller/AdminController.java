@@ -33,7 +33,7 @@ public class AdminController {
     private StudentService studentService;
 
     @GetMapping("/admin/report")
-    public String getAdminReportForm(@ModelAttribute("newEntry") Entry entry, Model model) {
+    public String getAdminReportForm(@ModelAttribute("newEntry") Entry entry, Model model){
         model.addAttribute("entries", entryService.getAll());
         return "adminReport";
     }
@@ -44,23 +44,21 @@ public class AdminController {
 //        entry = entryService.getById(entry.getId());
         List<Student> all = tmAttendanceService.getAll(entry.getId());
 
-        List<AdminReportView> reports = new ArrayList<AdminReportView>();
-        AdminReportView item;
-        for (Student student : all) {
+        List<AdminReportView> reports = new ArrayList<AdminReportView>();;
+        AdminReportView item ;
+        for (Student  student  : all){
             StudentTotalStats studentTotalStats = studentService.getStudentTotalStats(student.getMumId());
-            item = new AdminReportView();
-            item.attendedSessionsPercentage = studentTotalStats.getAttendedSessionsPercentage();
-            item.sessionsAttended = studentTotalStats.getSessionsAttended();
-            item.totalSessions = studentTotalStats.getTotalSessions();
-            item.strudentName = student.getUser().getFirstName();
-            item.studentID = student.getMumId() + "";
-            reports.add(item);
+           item  = new AdminReportView();
+           item.attendedSessionsPercentage = studentTotalStats.getAttendedSessionsPercentage();
+           item.sessionsAttended = studentTotalStats.getSessionsAttended();
+           item.totalSessions = studentTotalStats.getTotalSessions();
+           item.strudentName = student.getUser().getFirstName();
+           item.studentID = student.getMumId()+"";
+           reports.add(item);
         }
         model.addAttribute("reports", reports);
         model.addAttribute("entries", entryService.getAll());
-        return "adminReport";
-    }
-}
+
 //
 //        List<MeditationRecord> listRecord = meditationRecordService.findByStudentEntry(entry.getId());
 //        List<AdminReportView> reports = new ArrayList<AdminReportView>();
@@ -90,3 +88,4 @@ public class AdminController {
 //        return "adminReport";
 //    }
 
+}

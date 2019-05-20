@@ -11,6 +11,7 @@ import edu.mum.tm.viewmodel.StudentStatistics;
 import edu.mum.tm.viewmodel.StudentTotalStats;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.apache.commons.collections.IteratorUtils;
 
 import java.util.List;
 
