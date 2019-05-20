@@ -31,4 +31,10 @@ public class Student {
 
     @OneToMany(mappedBy = "student")
     private List<TmAttendance> tmAttendences;
+
+    @Column
+    private String ATTENDED_SESSIONS;
+    @Column
+    private String PERCENTAGE;
+
 }

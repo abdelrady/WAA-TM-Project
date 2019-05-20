@@ -11,7 +11,6 @@ import edu.mum.tm.viewmodel.StudentStatistics;
 import edu.mum.tm.viewmodel.StudentTotalStats;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.apache.commons.collections.IteratorUtils;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<TmAttendance> getBlockStudentData(Integer blockId, Long stuId) {
-        return IteratorUtils.toList(tmAttendanceRepository.findByStudentMumIdAndBlockId(stuId, blockId).iterator());
+        return null;
     }
 
     @Override
@@ -51,13 +50,13 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Block> getStudentEnrolledBlocks(Long studentId) {
-        return IteratorUtils.toList(blockRepository.findAll().iterator());
+        return null;
         //return IteratorUtils.toList(studentRepository.getStudentEnrolledBlocks(studentId, Block.class).iterator());
     }
 
     @Override
     public List<String> getEntries() {
-        return IteratorUtils.toList(studentRepository.getEntries().iterator());
+        return null;
     }
 
     @Override
