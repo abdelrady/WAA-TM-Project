@@ -6,7 +6,7 @@ import edu.mum.tm.repository.BlockRepository;
 import edu.mum.tm.repository.StudentRepository;
 import edu.mum.tm.repository.TmAttendanceRepository;
 import edu.mum.tm.service.StudentService;
-import edu.mum.tm.viewmodel.StudentBlockData;
+import edu.mum.tm.viewmodel.StudentStatistics;
 import edu.mum.tm.viewmodel.StudentTotalStats;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,4 +53,16 @@ public class StudentServiceImpl implements StudentService {
         return IteratorUtils.toList(blockRepository.findAll().iterator());
         //return IteratorUtils.toList(studentRepository.getStudentEnrolledBlocks(studentId, Block.class).iterator());
     }
+
+    @Override
+    public List<String> getEntries() {
+        return IteratorUtils.toList(studentRepository.getEntries().iterator());
+    }
+
+    @Override
+    public List<StudentStatistics> getStudentsStats(String entry) {
+        return studentRepository.getStudentStatsByEntry(entry);
+    }
+
+
 }

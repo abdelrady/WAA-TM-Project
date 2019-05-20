@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layouts/default_layout}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Entry Report</title>
+</head>
+<body>
+
+<div layout:fragment="main-content">
+    <h1>Entry Report</h1>
+    <br/>
+    <div class="row">
+        <div class="col">
+            <select th:field="*{entries}" id="entryselect">
+                <option value="0">select entry</option>
+                <option th:each="entry : ${entries}" th:value="${entry}" th:text="${entry}"></option>
+            </select>
+        </div>
+    </div>
+<br/>
+    <div class="row">
+        <div class="col">
+            <div class="results">
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/helpers.js}"></script>
+    <script type="text/javascript" th:src="@{/js/entry-report.js}"></script>
+</div>
+
+
+</body>
+</html>
