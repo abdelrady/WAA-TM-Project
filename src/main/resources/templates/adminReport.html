@@ -6,7 +6,6 @@
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-	<script type="text/javascript" src="adminReportJS.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
       <title>Admin Report</title>
@@ -27,9 +26,7 @@
 
 		<button class="btn btn-default btn-lgtext-center" type="Submit">Get data</button><br><br>
 	</form>
-	<br/>
-	<button data-toggle="modal" data-target="#myModal">add new student</button>
-	<br/>
+	<br><br>
 	<br />
 	<table class="table table-striped">
 		<tr>
@@ -38,18 +35,13 @@
 			<th>Total sessions possible</th>
 			<th>Total sessions attended</th>
 			<th>Percent</th>
-			<th>delete</th>
 		</tr>
 		<tr th:each="report : ${reports}">
-			<td th:text="${report.studentID}"></td>
-			<td th:text="${report.strudentName}"></td>
-			<td th:text="${report.totalSessions}"></td>
-			<td th:text="${report.sessionsAttended}"></td>
-			<td th:text="${report.attendedSessionsPercentage}"></td>
-			<td>
-				<button th:data-id="${report.studentID}" onclick="delstu(this.getAttribute('data-id'))"  type="button">deldete</button>
-				<button th:data-id="${report.studentID}" onclick="checkstu(this.getAttribute('data-id'))"  type="button">checkstu</button>
-			</td>
+			<td th:text="${report.student.studentID}"></td>
+			<td th:text="${report.student.FullName}"></td>
+			<td th:text="${report.totalSessionsPossible}"></td>
+			<td th:text="${report.totalSessionsAttended}"></td>
+			<td th:text="${report.percent}"></td>
 		</tr>
 	</table>
 	<br />
@@ -59,35 +51,6 @@
 		<button class="btn btn-link btn-lg" type="Submit">Go To Home Page</button>
 		</form>
 		</div>
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-						&times
-					</button>
-					<h4 class="modal-title" id="myModalLabel">
-						Student Info
-					</h4>
-				</div>
-				<div class="modal-body">
-					<form action="#" th:action="@{/add}" th:object="${userInfo}" method="post">
-						<input type="text" th:field="*{username}" /> <br/>
-						<input type="text" th:field="*{password}" />
-						<input type="submit" />
-					</form>
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">close
-					</button>
-					<button type="button" class="btn btn-primary">
-						submit
-					</button>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal -->
 </div>
-
 </body>
 </html>
