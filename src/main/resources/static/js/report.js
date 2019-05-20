@@ -1,6 +1,5 @@
 $(document).ready(function(){
     $('#entryselect').on('change', function(){
-        debugger;
         var entry = $(this).val();
         if(!entry)return;
 

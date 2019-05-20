@@ -19,7 +19,7 @@ INSERT into USER_ROLE values (2,2);
 INSERT into USER_ROLE values (3,2);
 INSERT into USER_ROLE values (4,1);
 
-INSERT into TMRETREAD(STUDENTID,DATE) values (986834,'2018-11-30');
+INSERT into TMRETREAT(ID,STUDENTID,DATE) values (1,986834,'2018-11-30');
 
 INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (986834, '11-18', 1,50,40);
 

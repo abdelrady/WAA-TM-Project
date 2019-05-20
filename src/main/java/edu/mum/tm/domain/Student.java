@@ -33,12 +33,6 @@ public class Student {
     private List<TmAttendance> tmAttendences;
 
     @Column
-    private String ATTENDED_SESSIONS;
-    @Column
-    private String PERCENTAGE;
-
-
-    @Column
     private Long attendedSessions;
 
     @Column
