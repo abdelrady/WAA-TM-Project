@@ -6,26 +6,28 @@ import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@SessionAttributes({"user", "loggedPerson"})
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
     private EntryService entryService;
 
-    @GetMapping("/admin/report")
-    public String getAdminReportForm(@ModelAttribute("newEntry") Entry entry, Model model){
-        model.addAttribute("entries", entryService.getAll());
-        return "adminReport";
+//    @GetMapping("/admin/report")
+//    public String getAdminReportForm(@ModelAttribute("newEntry") Entry entry, Model model){
+//        model.addAttribute("entries", entryService.getAll());
+//        return "adminReport";
+//    }
+
+    @GetMapping("/report")
+    public String getAdminReport(Model model){
+       
     }
 
 

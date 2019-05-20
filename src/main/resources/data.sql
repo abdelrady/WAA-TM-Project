@@ -21,7 +21,7 @@ INSERT into USER_ROLE values (3,3);
 INSERT into USER_ROLE values (4,1);
 
 
-INSERT INTO Student(mum_Id,entry,user_id,attendedSessions,percentage) VALUES (986834, '11-18', 1,50,40);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (986834, '11-18', 1,50,40);
 
 INSERT INTO BLOCK(ID, MMYY, TOTAL_SESSIONS, END_DATE, START_DATE) VALUES (1, '11-18', '22', '2018-11-30',  '2018-11-01');
 INSERT INTO BLOCK(ID, MMYY, TOTAL_SESSIONS, END_DATE, START_DATE) VALUES (2, '12-18', '21', '2018-12-31',  '2018-12-01');
