@@ -37,4 +37,10 @@ public class Student {
     @Column
     private String PERCENTAGE;
 
+
+    @Column
+    private Long attendedSessions;
+
+    @Column
+    private Double percentage;
 }
