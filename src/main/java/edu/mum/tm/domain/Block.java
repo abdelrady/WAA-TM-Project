@@ -28,7 +28,7 @@ public class Block {
 
     @Column
     //@Max(22)
-    private Integer TotalSessions;
+    private Integer totalSessions;
 
     @Column
     private String MMYY;
