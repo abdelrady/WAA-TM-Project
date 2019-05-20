@@ -27,7 +27,8 @@ public class AdminController {
 
     @GetMapping("/report")
     public String getAdminReport(Model model){
-       
+
+        return "entryReport";
     }
 
 
