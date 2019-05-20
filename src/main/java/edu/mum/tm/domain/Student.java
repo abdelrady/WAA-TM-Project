@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -31,4 +30,10 @@ public class Student {
 
     @OneToMany(mappedBy = "student")
     private List<TmAttendance> tmAttendences;
+
+    @Column
+    private Long attendedSessions;
+
+    @Column
+    private Double percentage;
 }

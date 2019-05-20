@@ -1,12 +1,12 @@
-
 $(document).ready(function(){
-    $('#blocks-select').on('change', function(){
-        var courseBlockId = $(this).val();
-        if(!courseBlockId)return;
+    $('#entryselect').on('change', function(){
+        debugger;
+        var entry = $(this).val();
+        if(!entry)return;
 
         $.ajax({
             type : "GET",
-            url : "/faculty/reports/mvc/courseBlock/"+courseBlockId+"/stats/",
+            url : "/admin/report/entry/"+entry,
             contentType: "application/json",
             dataType : "json",
             success : function(data){

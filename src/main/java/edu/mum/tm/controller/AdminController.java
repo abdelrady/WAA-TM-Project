@@ -1,31 +1,62 @@
 package edu.mum.tm.controller;
 
 import edu.mum.tm.domain.Entry;
+import edu.mum.tm.domain.Student;
+import edu.mum.tm.repository.StudentRepository;
 import edu.mum.tm.service.EntryService;
+import edu.mum.tm.service.StudentService;
+import edu.mum.tm.viewmodel.StudentStatistics;
+import edu.mum.tm.viewmodel.StudentTotalStats;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@SessionAttributes({"user", "loggedPerson"})
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
     private EntryService entryService;
 
-    @GetMapping("/admin/report")
-    public String getAdminReportForm(@ModelAttribute("newEntry") Entry entry, Model model){
-        model.addAttribute("entries", entryService.getAll());
-        return "adminReport";
+    @Autowired
+    private StudentService studentService;
+
+//    @GetMapping("/admin/report")
+//    public String getAdminReportForm(@ModelAttribute("newEntry") Entry entry, Model model){
+//        model.addAttribute("entries", entryService.getAll());
+//        return "adminReport";
+//    }
+
+    @GetMapping("/report")
+    public String getAdminReportEntries(Model model){
+        List<String> entries=studentService.getEntries();
+        model.addAttribute("entries",entries);
+        return "user/admin/entryReport";
+    }
+
+    @ResponseBody
+    @GetMapping("/report/entry/{entry}")
+    public List<StudentStatistics> getAdminReport(@PathVariable("entry") String entry)
+    {
+        System.out.println("in stat");
+        List<StudentStatistics> entryStudents=studentService.getStudentsStats(entry);
+//        List<StudentTotalStats> studentTotalStats=new ArrayList<>();
+//        for (Student entryStat:entryStudents) {
+//            StudentTotalStats studentStat=new StudentTotalStats();
+//            studentStat.setMumId(entryStat.getMumId());
+//            studentStat.setAttendedSessionsPercentage(entryStat.getPercentage());
+//            studentStat.setSessionsAttended(entryStat.getAttendedSessions());
+//            //studentStat.setTotalSessions(entryStat());
+//            studentTotalStats.add(studentStat);
+//        }
+
+        return entryStudents;
     }
 
 
