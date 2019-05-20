@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,24 +33,29 @@ public class UserController {
 
 
     @GetMapping("/student/index")
-    public String userIndex() {
+    public String userIndex(HttpSession session) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        session.setAttribute("auhenticatedUser",user);
         return "user/index";
     }
 
     @GetMapping("/admin/index")
-    public String adminIndex(Model model) {
+    public String adminIndex(Model model,HttpSession session) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
+        session.setAttribute("auhenticatedUser",user);
         model.addAttribute("userName", "Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
         model.addAttribute("adminMessage","Content Available Only for Users with Admin Role");
         return "user/admin";
     }
 
     @GetMapping("/faculty/index")
-    public String dbaIndex(Model model) {
+    public String dbaIndex(Model model,HttpSession session) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
+        session.setAttribute("auhenticatedUser",user);
         model.addAttribute("userName", "Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
         model.addAttribute("adminMessage","Content Available Only for Users with FACULTY Role");
         return "user/faculty";
