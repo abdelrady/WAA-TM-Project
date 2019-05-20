@@ -1,0 +1,5 @@
+TM Project
+
+http://localhost:8080/students/reports/rest/block/1/student/986834
+
+http://localhost:8080/students/reports/mvc/totalStats

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layouts/default_layout}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Faculty Extra Credit Report</title>
+</head>
+<body>
+
+<div class="col" layout:fragment="main-content" th:class="main-content">
+    <h2>Course/Block Extra Credits</h2>
+    <input type="hidden" th:value="${faculty.id}" class="faculty-id"/>
+    <label>Select Block/Course</label>
+    <select id="blocks-select">
+        <option value="">Select Course/Block</option>
+        <option th:each="b : ${faculty.courses}" th:value="${b.id}" th:text="${b.name}"></option>
+    </select>
+    <br/>
+    <br/>
+    <div class="results">
+    </div>
+    <script type="text/javascript" th:src="@{/js/helpers.js}"></script>
+    <script type="text/javascript" th:src="@{/js/faculty-report.js}"></script>
+</div>
+
+</body>
+</html>

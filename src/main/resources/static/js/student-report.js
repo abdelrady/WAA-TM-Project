@@ -1,19 +1,4 @@
-$.makeTable = function (mydata) {
-    var table = $('<table border=1 class="table table-striped table-md">');
-    var tblHeader = "<tr>";
-    for (var k in mydata[0]) tblHeader += "<th>" + k + "</th>";
-    tblHeader += "</tr>";
-    $(tblHeader).appendTo(table);
-    $.each(mydata, function (index, value) {
-        var TableRow = "<tr>";
-        $.each(value, function (key, val) {
-            TableRow += "<td>" + val + "</td>";
-        });
-        TableRow += "</tr>";
-        $(table).append(TableRow);
-    });
-    return ($(table));
-};
+
 $(document).ready(function(){
     $('#blocks-select').on('change', function(){
         var blockId = $(this).val();
@@ -30,7 +15,8 @@ $(document).ready(function(){
             dataType : "json",
             success : function(data){
                 var table = $.makeTable(data);
-                $(table).appendTo(".main-content");
+                $('.results').html('');
+                $(table).appendTo(".results");
                 $('.present-days').text(data.length);
                 var percentage = data.length * 100 / totalSessions;
                 $('.block-percentage').text(percentage.toFixed(2));
