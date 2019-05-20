@@ -2,7 +2,10 @@
 $(document).ready(function(){
     $('#blocks-select').on('change', function(){
         var courseBlockId = $(this).val();
-        if(!courseBlockId)return;
+        if(!courseBlockId){
+            $('.results').html('');
+            return;
+        }
 
         $.ajax({
             type : "GET",

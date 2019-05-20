@@ -1,6 +1,7 @@
 package edu.mum.tm.serviceImpl;
 
 import edu.mum.tm.domain.Block;
+import edu.mum.tm.domain.Student;
 import edu.mum.tm.domain.TmAttendance;
 import edu.mum.tm.repository.BlockRepository;
 import edu.mum.tm.repository.StudentRepository;
@@ -65,4 +66,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
 
+    public Student getStudentByUserId(int userId) {
+        return studentRepository.getStudentByUserId(userId);
+    }
 }

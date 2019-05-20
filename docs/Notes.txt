@@ -1,0 +1,26 @@
+TM Project
+
+http://localhost:8080/students/reports/rest/block/1/student/986834
+
+http://localhost:8080/students/reports/mvc/totalStats
+
+
+
+
+SELECT SR.AttendedPercentage, SR.STUDENT_ID as StudentId, CASE 
+	WHEN SR.AttendedPercentage >= 90 THEN 1.5
+	WHEN SR.AttendedPercentage >= 80 THEN 1.0
+	WHEN SR.AttendedPercentage >= 70 THEN 0.5
+	ELSE 0
+	END AS ExtraCredits
+  FROM
+(SELECT count(*) * 100 / B.TOTAL_SESSIONS as AttendedPercentage, T.STUDENT_ID FROM COURSE_BLOCK CB
+INNER JOIN STUDENTS_BLOCK_COURSES SBC
+ON SBC.COURSE_BLOCK_ID = CB.ID
+INNER JOIN TM_ATTENDANCE T
+ON T.STUDENT_ID = SBC.STUDENT_ID AND T.BLOCK_ID = CB.BLOCK_ID 
+INNER JOIN BLOCK B ON B.ID = CB.BLOCK_ID 
+where CB.ID = 1
+group by B.TOTAL_SESSIONS, T.STUDENT_ID) as SR
+where SR.AttendedPercentage >= 70
+

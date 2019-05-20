@@ -1,5 +1,6 @@
 package edu.mum.tm.serviceImpl;
 
+import edu.mum.tm.domain.Professor;
 import edu.mum.tm.repository.FacultyRepository;
 import edu.mum.tm.repository.StudentRepository;
 import edu.mum.tm.service.FacultyService;
@@ -18,12 +19,18 @@ public class FacultyServiceImpl implements FacultyService {
     private FacultyRepository facultyRepository;
 
     @Override
-    public List<ILookupItem> getFacultyCourses(Long facultyId) {
-        return facultyRepository.getFacultyCourses(facultyId);
+    public List<ILookupItem> getFacultyCourses(Long facultyId) throws Exception {
+        throw new Exception("");
+        //return facultyRepository.getFacultyCourses(facultyId);
     }
 
     @Override
     public List<StudentsExtraCredit> getCourseStudentsExtraCredits(Integer courseBlockId) {
         return facultyRepository.getCourseStudentsExtraCredits(courseBlockId);
+    }
+
+    @Override
+    public Professor getFacultyIdByUserId(int userId) {
+        return facultyRepository.getProfessorByUserId(userId);
     }
 }

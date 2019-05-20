@@ -49,6 +49,7 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
     List<StudentStatistics> getStudentStatsByEntry(String entry);
 
 
+    Student getStudentByUserId(int userId);
 
     //Long getStudentTotalBlockSessions(Long studentId);
 }

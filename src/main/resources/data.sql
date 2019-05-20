@@ -6,7 +6,6 @@ create table if not exists persistent_logins (
 );
 
 INSERT INTO Role VALUES (1, 'ADMIN');
-
 INSERT INTO Role VALUES (2, 'FACULTY');
 INSERT INTO Role VALUES (3, 'STUDENT');
 
@@ -17,7 +16,7 @@ INSERT INTO User(user_id,active, email, name, last_name, password) values(4,1, '
 
 INSERT into USER_ROLE values (1,3);
 INSERT into USER_ROLE values (2,2);
-INSERT into USER_ROLE values (3,3);
+INSERT into USER_ROLE values (3,2);
 INSERT into USER_ROLE values (4,1);
 
 

@@ -1,6 +1,7 @@
 package edu.mum.tm.controller;
 
 import edu.mum.tm.domain.Block;
+import edu.mum.tm.domain.User;
 import edu.mum.tm.service.FacultyService;
 import edu.mum.tm.service.StudentService;
 import edu.mum.tm.viewmodel.FacultyViewModel;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -24,11 +26,14 @@ public class FacultyReportController {
     private FacultyService facultyService;
 
     @GetMapping("/statsPerBlock")
-    public String getFacultyReport(Model model){
+    public String getFacultyReport(Model model, HttpSession session) throws Exception{
         FacultyViewModel faculty = new FacultyViewModel();
 
-        // TODO use user -> professor id
-        faculty.setId(1L);
+        User loggedInUser = (User)session.getAttribute("auhenticatedUser");
+
+        Long facultyId = facultyService.getFacultyIdByUserId(loggedInUser.getId()).getId();
+
+        faculty.setId(facultyId);
 
         faculty.setCourses(facultyService.getFacultyCourses(faculty.getId()));
 
