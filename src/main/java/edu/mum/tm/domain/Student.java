@@ -18,6 +18,7 @@ public class Student {
     @Id
     private Long mumId;
 
+
     @Column // MM-YY
     private String entry;
 
@@ -31,4 +32,12 @@ public class Student {
 
     @OneToMany(mappedBy = "student")
     private List<TmAttendance> tmAttendences;
+
+    public Long getMumId() {
+        return mumId;
+    }
+
+    public User getUser() {
+        return user;
+    }
 }
