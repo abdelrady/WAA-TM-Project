@@ -5,7 +5,7 @@ create table if not exists persistent_logins (
                                                last_used timestamp not null
 );
 
-Alter Table TM_ATTENDANCE Add constraint UX_TM_ATTENDANCE UNIQUE (DATE, TYPE, STUDENT_ID);
+Alter Table TM_ATTENDANCE Add constraint UX_TM_ATTENDANCE UNIQUE (DATE, STUDENT_ID);
 
 INSERT INTO Role VALUES (1, 'ADMIN');
 INSERT INTO Role VALUES (2, 'FACULTY');
@@ -15,6 +15,12 @@ INSERT INTO User(user_id,active, email, name, last_name, password) values(1,1, '
 INSERT INTO User(user_id,active, email, name, last_name, password) values(2,1, 'rxing@mum.edu', 'Tina', 'Xing', '$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
 INSERT INTO User(user_id,active, email, name, last_name, password) values(3,1, 'jbreun@mum.edu', 'Joe', 'Breun', '$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
 INSERT INTO User(user_id,active, email, name, last_name, password) values(4,1, 'ehassan@mum.edu', 'Eman', 'Hassan', '$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+INSERT INTO User(user_id,active, email, name, last_name, password) values(5,1, 'atantawy1@mum.edu', 'Abdelrady', 'Tantawy', '$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+INSERT INTO User(user_id,active, email, name, last_name, password) values(6,1, 'atantawy2@mum.edu', 'Abdelrady', 'Tantawy', '$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+INSERT INTO User(user_id,active, email, name, last_name, password) values(7,1, 'atantawy3@mum.edu', 'Abdelrady', 'Tantawy', '$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+INSERT INTO User(user_id,active, email, name, last_name, password) values(8,1, 'atantawy4@mum.edu', 'Abdelrady', 'Tantawy', '$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+INSERT INTO User(user_id,active, email, name, last_name, password) values(9,1, 'atantawy5@mum.edu', 'Abdelrady', 'Tantawy', '$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+INSERT INTO User(user_id,active, email, name, last_name, password) values(10,1, 'atantawy6@mum.edu', 'Abdelrady', 'Tantawy', '$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
 
 INSERT into USER_ROLE values (1,3);
 INSERT into USER_ROLE values (2,2);
@@ -26,12 +32,12 @@ INSERT into TMRETREAT(ID,STUDENTID,DATE) values (1,986834,'2018-11-30');
 INSERT into TMCHECK(ID,STUDENTID,DATE) values (1,986834,'2018-11-30');
 
 INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (986834, '11-18', 1,50,40);
-INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7888, '11-18', 1,0,0);
-INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7326, '11-18', 1,0,0);
-INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7763, '11-18', 1,0,0);
-INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7649, '11-18', 1,0,0);
-INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7433, '11-18', 1,0,0);
-INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (5809, '11-18', 1,0,0);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7888, '11-18', 5,0,0);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7326, '11-18', 6,0,0);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7763, '11-18', 7,0,0);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7649, '11-18', 8,0,0);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7433, '11-18', 9,0,0);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (5809, '11-18', 10,0,0);
 
 INSERT INTO BLOCK(ID, MMYY, TOTAL_SESSIONS, END_DATE, START_DATE) VALUES (1, '11-18', '22', '2018-11-30',  '2018-11-01');
 INSERT INTO BLOCK(ID, MMYY, TOTAL_SESSIONS, END_DATE, START_DATE) VALUES (2, '12-18', '21', '2018-12-31',  '2018-12-01');
@@ -60,7 +66,7 @@ INSERT INTO COURSE_BLOCK(Id, Block_id, Course_id, Professor_id) values(4, 2, 4, 
 INSERT INTO STUDENTS_BLOCK_COURSES VALUES (986834, 1);
 INSERT INTO STUDENTS_BLOCK_COURSES VALUES (986834, 3);
 
-/*
+
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (1, '2018-11-01', 'Argiro', 'EAM', 1, 986834);
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (2, '2018-11-02', 'Argiro', 'EAM', 1, 986834);
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (3, '2018-11-03', 'Argiro', 'EAM', 1, 986834);
@@ -85,7 +91,6 @@ INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (22, '2018-12-03', 'Argiro', 'EAM', 2, 986834);
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (23, '2018-12-04', 'Argiro', 'EAM', 2, 986834);
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (24, '2018-12-05', 'Argiro', 'EAM', 2, 986834);
-INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (25, '2018-12-06', 'Argiro', 'EAM', 2, 986834);
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (26, '2018-12-06', 'Argiro', 'EAM', 2, 986834);
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (27, '2018-12-07', 'Argiro', 'EAM', 2, 986834);
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (28, '2018-12-08', 'Argiro', 'EAM', 2, 986834);
@@ -105,7 +110,6 @@ INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (42, '2018-12-22', 'Argiro', 'EAM', 2, 986834);
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (43, '2018-12-23', 'Argiro', 'EAM', 2, 986834);
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (44, '2018-12-24', 'Argiro', 'EAM', 2, 986834);
-*/
 
 
 INSERT INTO Entry (id, date_entry) VALUES (1, '2018-08-08');

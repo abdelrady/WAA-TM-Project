@@ -40,12 +40,12 @@ public class StudentServiceImpl implements StudentService {
         stats.setMumId(studentId);
 
         Long totalSessions = studentRepository.getStudentTotalBlockSessions(studentId);
-        stats.setTotalSessions(totalSessions);
+        stats.setTotalSessions(totalSessions == null ? 1 : totalSessions);
 
         Long totalSessionsAttended = studentRepository.getStudentAttendedSessions(studentId);
-        stats.setSessionsAttended(totalSessionsAttended);
+        stats.setSessionsAttended(totalSessionsAttended == null ? 0 : totalSessionsAttended);
 
-        stats.setAttendedSessionsPercentage(totalSessionsAttended * 100 / totalSessions);
+        stats.setAttendedSessionsPercentage(stats.getSessionsAttended() * 100 / stats.getTotalSessions());
 
         return stats;
     }
