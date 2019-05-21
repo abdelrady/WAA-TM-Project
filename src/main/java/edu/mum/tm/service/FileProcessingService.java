@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface FileProcessingService {
-    FileProcessing getById(Integer fileId);
+    FileProcessing getById(Long fileId);
     List<FileProcessing> getAll();
 
     FileProcessing Save(FileProcessing fileProcessing);

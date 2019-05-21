@@ -10,6 +10,6 @@ import java.util.List;
 
 
 @Repository
-public interface FileProcessingRepository extends CrudRepository<FileProcessing, Integer>  {
+public interface FileProcessingRepository extends CrudRepository<FileProcessing, Long>  {
 
 }

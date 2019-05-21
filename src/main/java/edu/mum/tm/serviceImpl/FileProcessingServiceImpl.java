@@ -14,7 +14,7 @@ public class FileProcessingServiceImpl implements FileProcessingService {
     @Autowired
     private FileProcessingRepository fileProcessingRepository;
     @Override
-    public FileProcessing getById(Integer fileId) {
+    public FileProcessing getById(Long fileId) {
         return fileProcessingRepository.findById(fileId).get();
     }
 

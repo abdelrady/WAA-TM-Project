@@ -93,6 +93,5 @@ public class AdminController {
         tmCheckService.delete(tmCheck);
         return "redirect:/admin/tmcheck";
     }
-
 }
 

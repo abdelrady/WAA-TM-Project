@@ -33,7 +33,7 @@ public class TMSubmitterController {
     String content = "";
     //BufferedReader br;
     String filePath;
-    Integer procId = 0;
+    Long procId =Long.parseLong("0");
 
     private Logger log = Logger.getLogger(getClass());
 
@@ -116,7 +116,7 @@ public class TMSubmitterController {
     }
 
     @Async
-    void addTMFile(String filePath, Integer procId) {
+    void addTMFile(String filePath, Long procId) {
         int procRecsCounter =0, totalRows = 0;
 
         System.out.println(procId);
@@ -243,7 +243,7 @@ public class TMSubmitterController {
     }
 
     @Async
-    void addMTMFile(String filePath, Integer procId) {
+    void addMTMFile(String filePath, Long procId) {
 
 
         int procRecsCounter =0, totalRows = 0;
