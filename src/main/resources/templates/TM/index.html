@@ -6,29 +6,50 @@
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}"/>
-    <script>
-        var procId = 0;
+    <script  th:inline="javascript">
+        var procId = /*[[${procId}]]*/ 0;
         var data = {"proc": procId};
         function fetchdata(){
             $.ajax({
-                url: 'fetch_details.php',
+                url: '/admin/CheckTMFile?proc='+procId,
                 data: data,
-
+                contentType: "application/json",
+                //dataType: "json",
                 type: 'post',
                 success: function(data){
-                    // Perform operation on return value
-                    alert(data);
+                    debugger;
+                    if(data.done){
+                        $(".done .proc-status").html("Total rows processed: " + data.rowsCount + " , correct records: " + data.processed);
+                        $(".done").removeClass("hide");
+                        $(".processing").addClass("hide");
+                    }
+                    else{
+
+                        setTimeout(fetchdata,5000);
+                        $(".processing .proc-status").html("Total rows processed: " + data.rowsCount + " , correct records: " + data.processed);
+                        $(".processing").removeClass("hide")
+                    }
                 },
                 complete:function(data){
-                    setTimeout(fetchdata,5000);
+
                 }
             });
         }
 
         $(document).ready(function(){
-            setTimeout(fetchdata,5000);
+            //setTimeout(fetchdata,5000);
+            if(procId > 0) {
+                fetchdata();
+                $(".status").removeClass("hide")
+            }
         });
     </script>
+    <style>
+        .hide{
+            display: none;
+        }
+
+    </style>
 </head>
 <body>
 <div class="container" layout:fragment="main-content">
@@ -42,6 +63,17 @@
         </div>
     </div>
     <h1>Upload TM file:</h1>
+    <div class="status hide"  >
+        <h3>Upload Status</h3>
+        <div class="done hide">
+            <div >File processed</div>
+            <div class="proc-status "></div>
+        </div>
+        <div class="processing hide">
+            <div >File is processing</div>
+            <div class="proc-status"></div>
+        </div>
+    </div>
     <h2>Main file:</h2>
 
     <div>

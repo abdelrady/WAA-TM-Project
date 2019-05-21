@@ -18,7 +18,7 @@ public class FileProcessing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
 
     @Column(name="StartTime")

@@ -136,6 +136,8 @@ public class TMSubmitterController {
             int i =1;
             while ((line = b.readLine()) != null) {
                 totalRows++;
+
+                Thread.sleep(1);
                 try {
                     System.out.println("Linke "  + i++ + " : ");
                     //System.out.println(line);
@@ -168,12 +170,12 @@ public class TMSubmitterController {
                     System.out.println(e);
                 }
 
-                fileProcEntry.setDone(true);
-                fileProcEntry.setEndTIme(LocalDateTime.now());
-                fileProcessingService.Save(fileProcEntry);
 
             }
 
+            fileProcEntry.setDone(true);
+            fileProcEntry.setEndTIme(LocalDateTime.now());
+            fileProcessingService.Save(fileProcEntry);
         }
         catch (Exception ex){
 
@@ -312,4 +314,5 @@ public class TMSubmitterController {
 
 
     }
+
 }
