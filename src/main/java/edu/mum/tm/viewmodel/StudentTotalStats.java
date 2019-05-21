@@ -14,4 +14,8 @@ public class StudentTotalStats {
     private Long sessionsAttended;
 
     private double attendedSessionsPercentage;
+
+    private Long attendedTmCheck;
+
+    private Long attendedRetreats;
 }

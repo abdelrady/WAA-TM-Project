@@ -3,9 +3,7 @@ package edu.mum.tm.serviceImpl;
 import edu.mum.tm.domain.Block;
 import edu.mum.tm.domain.Student;
 import edu.mum.tm.domain.TmAttendance;
-import edu.mum.tm.repository.BlockRepository;
-import edu.mum.tm.repository.StudentRepository;
-import edu.mum.tm.repository.TmAttendanceRepository;
+import edu.mum.tm.repository.*;
 import edu.mum.tm.service.StudentService;
 import edu.mum.tm.viewmodel.StudentStatistics;
 import edu.mum.tm.viewmodel.StudentTotalStats;
@@ -21,6 +19,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private TmRetreatRepository tmRetreatRepository;
+
+    @Autowired
+    private TmCheckRepository tmCheckRepository;
 
     @Autowired
     private BlockRepository blockRepository;
@@ -47,6 +51,11 @@ public class StudentServiceImpl implements StudentService {
 
         stats.setAttendedSessionsPercentage(stats.getSessionsAttended() * 100 / stats.getTotalSessions());
 
+        Long attendedRetreats = tmRetreatRepository.getStudentAttendedRetreats(studentId);
+        stats.setAttendedRetreats(attendedRetreats == null ? 0 : attendedRetreats);
+
+        Long attendedTmCheck = tmCheckRepository.getStudentAttendedTmCheck(studentId);
+        stats.setAttendedTmCheck(attendedTmCheck == null ? 0 : attendedTmCheck);
         return stats;
     }
 

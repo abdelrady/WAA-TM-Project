@@ -20,6 +20,7 @@
 
 	N-Layer architecture
 	PRG
+	MVC
 	Spring boot
 	thymeleaf
 	REST apis
@@ -27,6 +28,7 @@
 	H2
 	Lombok
 	hibernate
+	aspectj/aop
 	bootstrap
 	jquery
 	css
@@ -37,15 +39,15 @@
 
 # Instructions to start
 
-1- System is configured to work on port 8090
-2- Open solution in intellj, then click RUN
-3- Solution contains data.sql dummy data
-4- Users available
-	1- Admin: ehassan@mum.edu
-	2- Faculty: rxing@mum.edu
-	   Faculty: jbreun@mum.edu
-	3- Student: atantawy@mum.edu
-	Password: 123456
+	1- System is configured to work on port 8090
+	2- Open solution in intellj, then click RUN
+	3- Solution contains data.sql dummy data
+	4- Users available
+		a- Admin: ehassan@mum.edu
+		b- Faculty: rxing@mum.edu
+		Faculty: jbreun@mum.edu
+		c- Student: atantawy@mum.edu
+		d- Password: 123456
 
 
 
