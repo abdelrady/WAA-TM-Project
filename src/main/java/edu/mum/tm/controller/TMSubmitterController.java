@@ -5,6 +5,7 @@ import edu.mum.tm.service.FileProcessingService;
 import edu.mum.tm.service.StudentService;
 import edu.mum.tm.service.TmAttendanceService;
 import net.bytebuddy.asm.Advice;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.scheduling.annotation.Async;
@@ -32,8 +33,9 @@ public class TMSubmitterController {
     String content = "";
     //BufferedReader br;
     String filePath;
-    long procId = 0;
+    Integer procId = 0;
 
+    private Logger log = Logger.getLogger(getClass());
 
     @Autowired
     private StudentService studentService;
@@ -49,7 +51,14 @@ public class TMSubmitterController {
         request.setAttribute("procId", 0);
         return "TM/index";
     }
+    public void logError(Exception ex) {
 
+        StringWriter stack = new StringWriter();
+        ex.printStackTrace(new PrintWriter(stack));
+        log.error("----------------------------------------------------------");
+        log.error(stack.toString());
+        log.error("----------------------------------------------------------");
+    }
     @PostMapping("/admin/AddTMFile")
     public String submitTMFile(@RequestParam("TMFile") MultipartFile file, Model model, HttpServletRequest request){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
@@ -94,6 +103,7 @@ public class TMSubmitterController {
         }
         catch (Exception ex){
             content = ex.getMessage();
+            logError(ex);
         }
         new Thread(new Runnable(){
             @Override
@@ -106,7 +116,7 @@ public class TMSubmitterController {
     }
 
     @Async
-    void addTMFile(String filePath, long procId) {
+    void addTMFile(String filePath, Integer procId) {
         int procRecsCounter =0, totalRows = 0;
 
         System.out.println(procId);
@@ -154,6 +164,7 @@ public class TMSubmitterController {
                     fileProcessingService.Save(fileProcEntry);
                 }
                 catch (Exception e){
+                    logError(e);
                     System.out.println(e);
                 }
 
@@ -230,7 +241,7 @@ public class TMSubmitterController {
     }
 
     @Async
-    void addMTMFile(String filePath, long procId) {
+    void addMTMFile(String filePath, Integer procId) {
 
 
         int procRecsCounter =0, totalRows = 0;
