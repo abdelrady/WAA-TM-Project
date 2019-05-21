@@ -7,7 +7,7 @@ import edu.mum.tm.repository.BlockRepository;
 import edu.mum.tm.repository.StudentRepository;
 import edu.mum.tm.repository.TmAttendanceRepository;
 import edu.mum.tm.service.StudentService;
-import edu.mum.tm.viewmodel.StudentBlockData;
+import edu.mum.tm.viewmodel.StudentStatistics;
 import edu.mum.tm.viewmodel.StudentTotalStats;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<TmAttendance> getBlockStudentData(Integer blockId, Long stuId) {
-        return IteratorUtils.toList(tmAttendanceRepository.findByStudentMumIdAndBlockId(stuId, blockId).iterator());
+        return null;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Block> getStudentEnrolledBlocks(Long studentId) {
-        return IteratorUtils.toList(blockRepository.findAll().iterator());
+        return null;
         //return IteratorUtils.toList(studentRepository.getStudentEnrolledBlocks(studentId, Block.class).iterator());
     }
 
@@ -59,5 +59,20 @@ public class StudentServiceImpl implements StudentService {
     public Student getStudentByMumId(long studentId) {
 
         return studentRepository.getStudentByMumId(studentId);
+    }
+
+    @Override
+    public List<String> getEntries() {
+        return null;
+    }
+
+    @Override
+    public List<StudentStatistics> getStudentsStats(String entry) {
+        return studentRepository.getStudentStatsByEntry(entry);
+    }
+
+
+    public Student getStudentByUserId(int userId) {
+        return studentRepository.getStudentByUserId(userId);
     }
 }

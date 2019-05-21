@@ -82,4 +82,7 @@ public class User {
             return false;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
 }

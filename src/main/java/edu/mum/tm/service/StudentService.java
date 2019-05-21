@@ -1,7 +1,6 @@
 package edu.mum.tm.service;
 
 import edu.mum.tm.domain.Block;
-import edu.mum.tm.domain.Student;
 import edu.mum.tm.domain.TmAttendance;
 import edu.mum.tm.viewmodel.StudentBlockData;
 import edu.mum.tm.viewmodel.StudentTotalStats;
@@ -16,4 +15,9 @@ public interface StudentService {
     List<Block> getStudentEnrolledBlocks(Long studentId);
 
     Student getStudentByMumId(long parseLong);
+
+    List<String> getEntries();
+
+    List<StudentStatistics> getStudentsStats(String entry);
+    Student getStudentByUserId(int userId);
 }

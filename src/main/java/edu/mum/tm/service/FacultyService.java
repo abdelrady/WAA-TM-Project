@@ -10,5 +10,4 @@ public interface FacultyService {
     List<ILookupItem> getFacultyCourses(Long facultyId);
 
     List<StudentsExtraCredit> getCourseStudentsExtraCredits(Integer courseBlockId);
-
 }

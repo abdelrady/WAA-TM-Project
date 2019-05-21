@@ -8,7 +8,6 @@ create table if not exists persistent_logins (
 Alter Table TM_ATTENDANCE Add constraint UX_TM_ATTENDANCE UNIQUE (DATE, TYPE, STUDENT_ID);
 
 INSERT INTO Role VALUES (1, 'ADMIN');
-
 INSERT INTO Role VALUES (2, 'FACULTY');
 INSERT INTO Role VALUES (3, 'STUDENT');
 
@@ -19,9 +18,10 @@ INSERT INTO User(user_id,active, email, name, last_name, password) values(4,1, '
 
 INSERT into USER_ROLE values (1,3);
 INSERT into USER_ROLE values (2,2);
-INSERT into USER_ROLE values (3,3);
+INSERT into USER_ROLE values (3,2);
 INSERT into USER_ROLE values (4,1);
 
+INSERT into TMRETREAT(ID,STUDENTID,DATE) values (1,986834,'2018-11-30');
 
 INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (986834, '11-18', 1,50,40);
 INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7888, '11-18', 1,0,0);

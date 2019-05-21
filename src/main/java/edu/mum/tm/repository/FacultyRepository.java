@@ -38,4 +38,6 @@ public interface FacultyRepository extends CrudRepository<Professor, Long> {
             "group by B.TOTAL_SESSIONS, T.STUDENT_ID) as SR\n" +
             "where SR.AttendedPercentage >= 70\n")
     List<StudentsExtraCredit> getCourseStudentsExtraCredits(Integer courseBlockId);
+
+    Professor getProfessorByUserId(int userId);
 }

@@ -3,13 +3,16 @@ $(document).ready(function(){
     $('#blocks-select').on('change', function(){
         var blockId = $(this).val();
         var studentId = $('.student-id').val();
-        if(!blockId || !studentId)return;
+        if(!blockId || !studentId){
+            $('.results').html('');
+            return;
+        }
         var totalSessions = $(this).find(':selected').data('sessions');
         $('.block-sessions').text(totalSessions);
 
         $.ajax({
             type : "GET",
-            url : "/students/reports/rest/block/"+blockId+"/student/"+studentId,
+            url : "/student/reports/rest/block/"+blockId+"/student/"+studentId,
             //data : ,
             contentType: "application/json",
             dataType : "json",
