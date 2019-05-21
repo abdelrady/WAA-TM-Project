@@ -11,10 +11,5 @@ import java.util.List;
 
 @Repository
 public interface FileProcessingRepository extends CrudRepository<FileProcessing, Long>  {
-    @Query(nativeQuery = true, value = "SELECT * From FileProcessing" )
-    List<FileProcessing> getAll();
 
-
-    @Query(nativeQuery = true, value = "SELECT * From FILE_PROCESSING  f where f.Id = :fileId" )
-    FileProcessing getById(long fileId);
 }

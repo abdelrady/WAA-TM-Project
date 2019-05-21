@@ -1,12 +1,8 @@
 package edu.mum.tm.controller;
 
-import edu.mum.tm.domain.Block;
 import edu.mum.tm.domain.User;
 import edu.mum.tm.service.FacultyService;
-import edu.mum.tm.service.StudentService;
 import edu.mum.tm.viewmodel.FacultyViewModel;
-import edu.mum.tm.viewmodel.LookupItem;
-import edu.mum.tm.viewmodel.StudentTotalStats;
 import edu.mum.tm.viewmodel.StudentsExtraCredit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,7 +35,7 @@ public class FacultyReportController {
 
         model.addAttribute("faculty", faculty);
 
-        return "FacultyReport";
+        return "user/faculty/FacultyReport";
     }
 
     @ResponseBody

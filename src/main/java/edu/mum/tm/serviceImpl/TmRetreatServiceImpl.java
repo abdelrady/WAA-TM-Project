@@ -3,6 +3,7 @@ package edu.mum.tm.serviceImpl;
 import edu.mum.tm.domain.TmRetreat;
 import edu.mum.tm.repository.TmRetreatRepository;
 import edu.mum.tm.service.TmRetreatService;
+import org.apache.commons.collections.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class TmRetreatServiceImpl implements TmRetreatService {
     public TmRetreatRepository tmRetreatRepository;
     @Override
     public List<TmRetreat> findAll() {
-        return tmRetreatRepository.findAll();
+        return IteratorUtils.toList(tmRetreatRepository.findAll().iterator());
     }
 
     @Override

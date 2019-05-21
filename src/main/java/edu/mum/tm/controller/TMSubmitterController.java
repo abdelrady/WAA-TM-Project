@@ -1,7 +1,6 @@
 package edu.mum.tm.controller;
 
 import edu.mum.tm.domain.*;
-import edu.mum.tm.service.EntryService;
 import edu.mum.tm.service.FileProcessingService;
 import edu.mum.tm.service.StudentService;
 import edu.mum.tm.service.TmAttendanceService;
@@ -35,8 +34,6 @@ public class TMSubmitterController {
     String filePath;
     long procId = 0;
 
-    @Autowired
-    private EntryService entryService;
 
     @Autowired
     private StudentService studentService;
@@ -49,15 +46,12 @@ public class TMSubmitterController {
 
     @GetMapping("/admin/TM")
     public String getTMSubmitForm(@ModelAttribute("newEntry") Entry entry, Model model, HttpServletRequest request){
-        model.addAttribute("entries", entryService.getAll());
-
         request.setAttribute("procId", 0);
         return "TM/index";
     }
 
     @PostMapping("/admin/AddTMFile")
     public String submitTMFile(@RequestParam("TMFile") MultipartFile file, Model model, HttpServletRequest request){
-        model.addAttribute("entries", entryService.getAll());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         filePath = request.getServletContext().getRealPath("/") + "TempFile\\";// + LocalDateTime.now().format(formatter);
 
@@ -183,7 +177,6 @@ public class TMSubmitterController {
 
     @PostMapping("/admin/AddManualTMFile")
     public String submitMTMFile(@RequestParam("TMFile") MultipartFile file, Model model, HttpServletRequest request){
-        model.addAttribute("entries", entryService.getAll());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         filePath = request.getServletContext().getRealPath("/") + "TempFile\\";// + LocalDateTime.now().format(formatter);
 

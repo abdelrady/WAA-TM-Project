@@ -9,6 +9,7 @@ import edu.mum.tm.repository.TmAttendanceRepository;
 import edu.mum.tm.service.StudentService;
 import edu.mum.tm.viewmodel.StudentStatistics;
 import edu.mum.tm.viewmodel.StudentTotalStats;
+import org.apache.commons.collections.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.collections.IteratorUtils;
@@ -29,7 +30,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<TmAttendance> getBlockStudentData(Integer blockId, Long stuId) {
-        return null;
+        return IteratorUtils.toList(tmAttendanceRepository.findByStudentMumIdAndBlockId(stuId, blockId).iterator());
     }
 
     @Override
@@ -51,8 +52,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Block> getStudentEnrolledBlocks(Long studentId) {
-        return null;
-        //return IteratorUtils.toList(studentRepository.getStudentEnrolledBlocks(studentId, Block.class).iterator());
+        return IteratorUtils.toList(blockRepository.findAll().iterator());
     }
 
     @Override
@@ -63,7 +63,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<String> getEntries() {
-        return null;
+
+        return IteratorUtils.toList(studentRepository.getEntries().iterator());
     }
 
     @Override

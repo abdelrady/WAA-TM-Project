@@ -105,15 +105,15 @@ public class HomeController {
         session.setAttribute("auhenticatedUser",user);
         if(user.isAdmin())
         {
-            return "redirect:/admin/index";
+            return "redirect:/admin/report";
         }
         else if(user.isFaculty())
         {
-            return "redirect:/faculty/index";
+            return "redirect:/faculty/reports/mvc/statsPerBlock";
         }
         else
         {
-            return "redirect:/student/index";
+            return "redirect:/student/reports/mvc/totalStats";
 
         }
     }

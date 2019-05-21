@@ -19,9 +19,9 @@ public class FacultyServiceImpl implements FacultyService {
     private FacultyRepository facultyRepository;
 
     @Override
-    public List<ILookupItem> getFacultyCourses(Long facultyId) throws Exception {
-        throw new Exception("");
-        //return facultyRepository.getFacultyCourses(facultyId);
+    public List<ILookupItem> getFacultyCourses(Long facultyId) {
+        //throw new Exception("");
+        return facultyRepository.getFacultyCourses(facultyId);
     }
 
     @Override

@@ -14,6 +14,6 @@ import java.util.List;
 
 public interface TmRetreatRepository extends CrudRepository<TmRetreat, Integer> {
 
-    List<TmRetreat> findAll();
+ //   List<TmRetreat> findAll();
 
 }

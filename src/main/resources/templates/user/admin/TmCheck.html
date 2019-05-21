@@ -5,13 +5,13 @@
     <meta charset="ISO-8859-1">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TM Retreat</title>
+    <title>TM Check</title>
 </head>
 <body>
 <div class="container text-center" layout:fragment="main-content">
-    <h2 class = "text-primary">TM Retreat</h2>
+    <h2 class = "text-primary">TM Check</h2>
     <br>
-    <button data-toggle="modal" data-target="#myModal">Add new Retreat</button>
+    <button data-toggle="modal" data-target="#myModal">Add new TM Check</button>
     <br>
     <br />
     <table class="table table-striped">
@@ -21,12 +21,12 @@
             <th>Action</th>
         </tr>
 
-        <tr th:each="retreat : ${retreats}">
-            <td th:text="${retreat.studentId}"  name="studentId"></td>
-            <td th:text="${retreat.date}"  name="date"></td>
+        <tr th:each="tmcheck : ${tmchecks}">
+            <td th:text="${tmcheck.studentId}"  name="studentId"></td>
+            <td th:text="${tmcheck.date}"  name="date"></td>
             <td>
                 <!--  how to send this object to back end-->
-                <form th:action="@{/admin/deleteitem/__${retreat.Id}__/__${retreat.studentId}__/__${retreat.date}__}"  th:object="${retreat}" method="POST">
+                <form th:action="@{/admin/deleteTmCheck/__${tmcheck.Id}__/__${tmcheck.studentId}__/__${tmcheck.date}__}"  th:object="${TmCheck}" method="POST">
                     <input type="submit" value="delete" />
                 </form>
             </td>
@@ -36,15 +36,14 @@
     <br />
 
 
-
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Add new Retreat </h4>
+                    <h4 class="modal-title" id="myModalLabel">Add new Tm Check</h4>
                 </div>
-                <form th:action="@{/admin/tmretreat}" th:object="${TmRetreat}" method="POST" class="form-signin">
+                <form th:action="@{/admin/tmcheck}" th:object="${TmCheck}" method="POST" class="form-signin">
                     Student ID:<input type="text" id="studentId" name="studentId" th:placeholder="${studentId}"
                                       class="form-control"/>
                     Date :<input type="date" id="date" name="date" th:placeholder="${date}"

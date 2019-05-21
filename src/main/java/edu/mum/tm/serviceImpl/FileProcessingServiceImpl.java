@@ -3,6 +3,7 @@ package edu.mum.tm.serviceImpl;
 import edu.mum.tm.domain.FileProcessing;
 import edu.mum.tm.repository.FileProcessingRepository;
 import edu.mum.tm.service.FileProcessingService;
+import org.apache.commons.collections.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +15,12 @@ public class FileProcessingServiceImpl implements FileProcessingService {
     private FileProcessingRepository fileProcessingRepository;
     @Override
     public FileProcessing getById(long fileId) {
-        return fileProcessingRepository.getById(fileId);
+        return fileProcessingRepository.findById(fileId).get();
     }
 
     @Override
     public List<FileProcessing> getAll() {
-        return fileProcessingRepository.getAll();
+        return IteratorUtils.toList( fileProcessingRepository.findAll().iterator());
     }
 
     @Override

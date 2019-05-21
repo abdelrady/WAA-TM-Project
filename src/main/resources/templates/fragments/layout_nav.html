@@ -14,17 +14,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a th:href="@{/home}" class="navbar-brand">TM Management</a>
+            <a th:href="@{/}" class="navbar-brand">TM Management</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/">TM Check Management</a></li>
-                <li><a href="/">TM Retreat Management</a></li>
-                <li class="dropdown" sec:authorize="hasAuthority('STUDENT') || hasAuthority('FACULTY')">
+                <li sec:authorize="hasAuthority('ADMIN')"><a href="/admin/tmcheck">TM Check Management</a></li>
+                <li sec:authorize="hasAuthority('ADMIN')"><a href="/admin/tmretreat">TM Retreat Management</a></li>
+                <li sec:authorize="hasAuthority('ADMIN')"><a href="/admin/TM">Upload TM Attendance</a></li>
+                <li class="dropdown" sec:authorize="hasAuthority('STUDENT') || hasAuthority('FACULTY') || hasAuthority('ADMIN')">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li sec:authorize="hasAuthority('STUDENT')"><a th:href="@{/student/reports/mvc/totalStats}">Student Report</a></li>
                         <li sec:authorize="hasAuthority('FACULTY')"><a th:href="@{/faculty/reports/mvc/statsPerBlock}">Faculty Report</a></li>
+                        <li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/admin/report}">Entry Report</a></li>
                     </ul>
                 </li>
             </ul>

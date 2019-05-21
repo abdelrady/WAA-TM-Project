@@ -23,6 +23,8 @@ INSERT into USER_ROLE values (4,1);
 
 INSERT into TMRETREAT(ID,STUDENTID,DATE) values (1,986834,'2018-11-30');
 
+INSERT into TMCHECK(ID,STUDENTID,DATE) values (1,986834,'2018-11-30');
+
 INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (986834, '11-18', 1,50,40);
 INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7888, '11-18', 1,0,0);
 INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7326, '11-18', 1,0,0);

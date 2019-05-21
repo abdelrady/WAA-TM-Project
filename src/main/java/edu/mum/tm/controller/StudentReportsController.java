@@ -32,6 +32,6 @@ public class StudentReportsController {
         model.addAttribute("student", stats);
         model.addAttribute("blocks", blocks);
 
-        return "StudentTmReport";
+        return "user/student/StudentTmReport";
     }
 }

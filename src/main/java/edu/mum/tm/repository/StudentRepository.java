@@ -2,6 +2,7 @@ package edu.mum.tm.repository;
 
 import edu.mum.tm.domain.Block;
 import edu.mum.tm.domain.Student;
+import edu.mum.tm.viewmodel.StudentStatistics;
 import edu.mum.tm.viewmodel.StudentTotalStats;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

@@ -2,9 +2,11 @@ package edu.mum.tm.controller;
 
 import edu.mum.tm.domain.Entry;
 import edu.mum.tm.domain.Student;
+import edu.mum.tm.domain.TmCheck;
 import edu.mum.tm.domain.TmRetreat;
 import edu.mum.tm.repository.StudentRepository;
 import edu.mum.tm.service.StudentService;
+import edu.mum.tm.service.TmCheckService;
 import edu.mum.tm.service.TmRetreatService;
 import edu.mum.tm.viewmodel.StudentStatistics;
 import edu.mum.tm.viewmodel.StudentTotalStats;
@@ -28,6 +30,9 @@ public class AdminController {
 
     @Autowired
     private TmRetreatService tmRetreatService;
+
+    @Autowired
+    private TmCheckService tmCheckService;
 
     @GetMapping("/report")
     public String getAdminReportEntries(Model model) {
@@ -53,7 +58,6 @@ public class AdminController {
     @PostMapping("/tmretreat")
     public String postTMRetreatForm(@ModelAttribute("TmRetreat") TmRetreat retreat, Model model){
         tmRetreatService.save(retreat);
-        model.addAttribute("retreats",tmRetreatService.findAll());
         return "redirect:/admin/tmretreat";
     }
 
@@ -64,10 +68,31 @@ public class AdminController {
         retreat.setStudentId(studentid);
         retreat.setDate(LocalDate.parse(date));
             tmRetreatService.delete(retreat);
-        model.addAttribute("retreats",tmRetreatService.findAll());
         return "redirect:/admin/tmretreat";
     }
 
+
+    @GetMapping("/tmcheck")
+    public String getTMcheckForm( Model model){
+        model.addAttribute("tmchecks",tmCheckService.findAll());
+        return "/user/admin/TmCheck";
+    }
+
+    @PostMapping("/tmcheck")
+    public String postTMRetreatForm(@ModelAttribute("TmCheck") TmCheck tmcheck, Model model){
+        tmCheckService.save(tmcheck);
+        return "redirect:/admin/tmcheck";
+    }
+
+    @PostMapping("/deleteTmCheck/{id}/{studentid}/{date}")
+    public String tmCheckDelete(@PathVariable("id") Long id,@PathVariable("studentid") Long studentid, @PathVariable("date") String date, Model model){
+        TmCheck tmCheck=new TmCheck();
+        tmCheck.setId(id);
+        tmCheck.setStudentId(studentid);
+        tmCheck.setDate(LocalDate.parse(date));
+        tmCheckService.delete(tmCheck);
+        return "redirect:/admin/tmcheck";
+    }
 
 }
 
