@@ -5,6 +5,8 @@ create table if not exists persistent_logins (
                                                last_used timestamp not null
 );
 
+Alter Table TM_ATTENDANCE Add constraint UX_TM_ATTENDANCE UNIQUE (DATE, TYPE, STUDENT_ID);
+
 INSERT INTO Role VALUES (1, 'ADMIN');
 
 INSERT INTO Role VALUES (2, 'FACULTY');
@@ -22,6 +24,12 @@ INSERT into USER_ROLE values (4,1);
 
 
 INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (986834, '11-18', 1,50,40);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7888, '11-18', 1,0,0);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7326, '11-18', 1,0,0);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7763, '11-18', 1,0,0);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7649, '11-18', 1,0,0);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (7433, '11-18', 1,0,0);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (5809, '11-18', 1,0,0);
 
 INSERT INTO BLOCK(ID, MMYY, TOTAL_SESSIONS, END_DATE, START_DATE) VALUES (1, '11-18', '22', '2018-11-30',  '2018-11-01');
 INSERT INTO BLOCK(ID, MMYY, TOTAL_SESSIONS, END_DATE, START_DATE) VALUES (2, '12-18', '21', '2018-12-31',  '2018-12-01');
@@ -50,6 +58,7 @@ INSERT INTO COURSE_BLOCK(Id, Block_id, Course_id, Professor_id) values(4, 2, 4, 
 INSERT INTO STUDENTS_BLOCK_COURSES VALUES (986834, 1);
 INSERT INTO STUDENTS_BLOCK_COURSES VALUES (986834, 3);
 
+/*
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (1, '2018-11-01', 'Argiro', 'EAM', 1, 986834);
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (2, '2018-11-02', 'Argiro', 'EAM', 1, 986834);
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (3, '2018-11-03', 'Argiro', 'EAM', 1, 986834);
@@ -94,6 +103,7 @@ INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (42, '2018-12-22', 'Argiro', 'EAM', 2, 986834);
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (43, '2018-12-23', 'Argiro', 'EAM', 2, 986834);
 INSERT INTO TM_ATTENDANCE(ID, DATE, LOCATION, TYPE, BLOCK_ID, STUDENT_ID) VALUES (44, '2018-12-24', 'Argiro', 'EAM', 2, 986834);
+*/
 
 
 INSERT INTO Entry (id, date_entry) VALUES (1, '2018-08-08');

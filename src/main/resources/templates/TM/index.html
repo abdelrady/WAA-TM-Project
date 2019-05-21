@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layouts/default_layout}"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">>
+<head>
+    <title>TM Uploader</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}"/>
+    <script>
+        var procId = 0;
+        var data = {"proc": procId};
+        function fetchdata(){
+            $.ajax({
+                url: 'fetch_details.php',
+                data: data,
+
+                type: 'post',
+                success: function(data){
+                    // Perform operation on return value
+                    alert(data);
+                },
+                complete:function(data){
+                    setTimeout(fetchdata,5000);
+                }
+            });
+        }
+
+        $(document).ready(function(){
+            setTimeout(fetchdata,5000);
+        });
+    </script>
+</head>
+<body>
+<div class="container" layout:fragment="main-content">
+    <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
+        Logged in user: <span sec:authentication="name"></span> |
+        Roles: <span sec:authentication="principal.authorities"></span>
+        <div>
+            <form action="#" th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout" />
+            </form>
+        </div>
+    </div>
+    <h1>Upload TM file:</h1>
+    <h2>Main file:</h2>
+
+    <div>
+        <form action="#" th:action="@{AddTMFile}" enctype="multipart/form-data" method="post">
+            <label for="TMFile" >Select file:</label>
+            <input type="file" id="TMFile" class="TMFile" name="TMFile" />
+            <input type="submit" value="Upload" />
+        </form>
+    </div>
+
+    <br/>
+
+    <h2>Manual file:</h2>
+
+    <div>
+        <form action="#" th:action="@{AddManualTMFile}" enctype="multipart/form-data" method="post">
+            <label for="TMFile" >Select file:</label>
+            <input type="file" id="TMFile" class="TMFile" name="TMFile" />
+            <input type="submit" value="Upload" />
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -34,5 +34,7 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
             "WHERE SBC.STUDENT_ID  = :studentId")
     <T> Iterable<T> getStudentEnrolledBlocks(Long studentId, Class<T> type);
 
+    Student getStudentByMumId(long studentId);
+
     //Long getStudentTotalBlockSessions(Long studentId);
 }

@@ -1,6 +1,7 @@
 package edu.mum.tm.serviceImpl;
 
 import edu.mum.tm.domain.Block;
+import edu.mum.tm.domain.Student;
 import edu.mum.tm.domain.TmAttendance;
 import edu.mum.tm.repository.BlockRepository;
 import edu.mum.tm.repository.StudentRepository;
@@ -52,5 +53,11 @@ public class StudentServiceImpl implements StudentService {
     public List<Block> getStudentEnrolledBlocks(Long studentId) {
         return IteratorUtils.toList(blockRepository.findAll().iterator());
         //return IteratorUtils.toList(studentRepository.getStudentEnrolledBlocks(studentId, Block.class).iterator());
+    }
+
+    @Override
+    public Student getStudentByMumId(long studentId) {
+
+        return studentRepository.getStudentByMumId(studentId);
     }
 }
