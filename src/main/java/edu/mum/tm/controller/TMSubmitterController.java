@@ -270,12 +270,8 @@ public class TMSubmitterController {
                     TmAttendance entry = new TmAttendance();
 
                     long sid = 0;
-                    //Long.parseLong();
                     String sidString = lineData[1];
-                    String[] sidStringParts = sidString.split("-");
-                    sid = Long.parseLong(sidStringParts[2]);
-                    sid += 10000 * Long.parseLong(sidStringParts[1]);
-                    sid += 1000000 * Long.parseLong(sidStringParts[0]);
+                    sid = Long.parseLong(sidString.replace("-", ""));
 
                     Student s = studentService.getStudentByMumId(sid);
                     entry.setStudent(s);

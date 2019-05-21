@@ -930,3 +930,18 @@ INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (4
 INSERT INTO User(user_id,active, email, name, last_name, password) values(282,1, '5312@mum.edu', '5312', '5312','$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
 INSERT into USER_ROLE values (282,3);
 INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (5312, '11-18', 282,0,0);
+
+INSERT INTO User(user_id,active, email, name, last_name, password) values(283,1, '981234@mum.edu', '981234', '981234','$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+INSERT into USER_ROLE values (283,3);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (981234, '11-18', 283,0,0);
+INSERT INTO User(user_id,active, email, name, last_name, password) values(284,1, '981235@mum.edu', '981235', '981235','$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+INSERT into USER_ROLE values (284,3);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (981235, '11-18', 284,0,0);
+INSERT INTO User(user_id,active, email, name, last_name, password) values(285,1, '981237@mum.edu', '981237', '981237','$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+INSERT into USER_ROLE values (285,3);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (981237, '11-18', 285,0,0);
+INSERT INTO User(user_id,active, email, name, last_name, password) values(286,1, '981236@mum.edu', '981236', '981236','$2a$10$.YWv5U13xQQdeWCYSZx8UeauVA3N4byEtBZgNLDwfVUj2iQ6UcB72');
+INSERT into USER_ROLE values (286,3);
+INSERT INTO Student(mum_Id,entry,user_id,attended_Sessions,percentage) VALUES (981236, '11-18', 286,0,0);
+
+alter sequence HIBERNATE_SEQUENCE restart with 100
