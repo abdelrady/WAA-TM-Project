@@ -7,20 +7,15 @@
 </head>
 <body>
 <div class="container" layout:fragment="main-content">
-    <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
-        Logged in user: <span sec:authentication="name"></span> |
-        Roles: <span sec:authentication="principal.authorities"></span>
-        <div>
-            <form action="#" th:action="@{/logout}" method="post">
-                <input type="submit" value="Logout" />
-            </form>
+    <div class="row">
+        <div class="col-sm-4">
+            <img th:src="@{images/tmimage.jpeg}" th:width="200" th:height="200" alt="">
         </div>
+        <div class="col-sm-8">
+            <h1>Welcome to TM management system</h1>
+            <p>This system is inteded to provide services for admins, faculty and students related to TM requirements.</p></div>
     </div>
-    <h1>Welcome to TM management system</h1>
-    <p>This system is inteded to provide services for admins, faculty and students related to TM requirements.</p>
-    <ul>
-        <li><a th:href="@{/login}">Login</a></li>
-    </ul>
+
 </div>
 </body>
 </html>

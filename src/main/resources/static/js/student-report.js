@@ -12,7 +12,7 @@ $(document).ready(function(){
 
         $.ajax({
             type : "GET",
-            url : "/student/reports/rest/block/"+blockId+"/student/"+studentId,
+            url : "/students/reports/rest/block/"+blockId+"/student/"+studentId,
             //data : ,
             contentType: "application/json",
             dataType : "json",
