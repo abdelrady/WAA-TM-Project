@@ -10,7 +10,8 @@
 <div class="col" layout:fragment="main-content" th:class="main-content">
     <h2>Cumulative attendance info</h2>
     <input type="hidden" th:value="${student.mumId}" class="student-id"/>
-    <table class="table table-striped">
+    <div class="slick-initialized" style="margin: 10px;"> <div class=" slick-slide " ><a href="javascript:downloadCSV('table.main')"><i class="fa fa-file-excel-o fa-2x" aria-hidden="true"></i></a></div></div>
+    <table class="table table-striped main">
         <tbody>
         <tr>
             <td>Total sessions possible</td>
@@ -34,24 +35,27 @@
         </tr>
         </tbody>
     </table>
-    <table>
-        <tbody>
-        <tr>
-            <td>Select Block</td>
-            <td style="widht: 75%;">
 
-                <div class="row">
-                    <div class="col-9 form-group">
-                        <div class="pb_select-wrap">
-                            <select id="blocks-select" class="form-control pb_height-50 reverse">
-                                <option value="">Select Course/Block</option>
-                                <option th:attr="data-sessions=${b.totalSessions}" th:each="b : ${blocks}" th:value="${b.id}" th:text="${b.MMYY}"></option>
-                            </select>
-                        </div>
+
+    <div class="row">
+        <div class="col-3">Select Block</div>
+        <div class="col-3">
+
+            <div class="row">
+                <div class="col-9 form-group">
+                    <div class="pb_select-wrap">
+                        <select id="blocks-select" class="form-control pb_height-50 reverse">
+                            <option value="">Select Course/Block</option>
+                            <option th:attr="data-sessions=${b.totalSessions}" th:each="b : ${blocks}" th:value="${b.id}" th:text="${b.MMYY}"></option>
+                        </select>
                     </div>
                 </div>
-            </td>
-        </tr>
+            </div>
+        </div>
+    </div>
+    <div class="slick-initialized" style="margin: 10px;"> <div class=" slick-slide " ><a href="javascript:downloadCSV('table.data')"><i class="fa fa-file-excel-o fa-2x" aria-hidden="true"></i></a></div></div>
+    <table class="data">
+        <tbody>
         <tr>
             <td>Sessions in block</td>
             <td class="block-sessions"></td>
@@ -71,6 +75,8 @@
         </tr>
         </tbody>
     </table>
+
+    <div class="slick-initialized" style="margin: 10px;"> <div class=" slick-slide " ><a href="javascript:downloadCSV('.results table')"><i class="fa fa-file-excel-o fa-2x" aria-hidden="true"></i></a></div></div>
     <div class="results">
     </div>
     <script type="text/javascript" th:src="@{/js/helpers.js}"></script>
