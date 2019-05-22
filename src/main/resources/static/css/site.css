@@ -1,0 +1,9 @@
+html,body{
+    height: 100%;
+}
+
+.footer {
+    left: 0;
+    position: fixed;
+    right: 0;
+}

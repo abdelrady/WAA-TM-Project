@@ -35,6 +35,23 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
             "WHERE SBC.STUDENT_ID  = :studentId")
     <T> Iterable<T> getStudentEnrolledBlocks(Long studentId, Class<T> type);
 
+    @Query(nativeQuery = true, value = "SELECT sbc.student_id as studentID ,sum(B.TOTAL_SESSIONS) as totalSessions\n" +
+            "            FROM\n" +
+            " STUDENTS_BLOCK_COURSES SBC \n" +
+            "            INNER JOIN COURSE_BLOCK  CB\n" +
+            "            ON CB.ID = SBC.COURSE_BLOCK_ID \n" +
+            "            INNER JOIN BLOCK B\n" +
+            "            ON B.ID = CB.BLOCK_ID \n" +
+            "            group by sbc.student_id")
+    <T> Iterable<T> getAllStudentEnrolledBlocks(Class<T> type);
+
+    @Query(nativeQuery = true, value = "SELECT sbc.mum_id as studentID ,count(tm.*) as totalSessions\n" +
+            "            FROM\n" +
+            " student SBC \n" +
+            "inner join tm_attendance tm on tm.student_id=sbc.mum_id\n" +
+            "            group by sbc.mum_id")
+    <T> Iterable<T> getAllStudentAttendanceCount(Class<T> type);
+
     Student getStudentByMumId(long studentId);
 
     @Query(nativeQuery = true, value = "SELECT DISTINCT Entry "+

@@ -1,9 +1,11 @@
 package edu.mum.tm.controller;
 
 import edu.mum.tm.domain.*;
+import edu.mum.tm.service.BlockService;
 import edu.mum.tm.service.FileProcessingService;
 import edu.mum.tm.service.StudentService;
 import edu.mum.tm.service.TmAttendanceService;
+import edu.mum.tm.viewmodel.StudentTotals;
 import net.bytebuddy.asm.Advice;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,9 @@ public class TMSubmitterController {
 
     @Autowired
     private FileProcessingService fileProcessingService;
+
+    @Autowired
+    private BlockService blockService;
 
     @GetMapping("/admin/TM")
     public String getTMSubmitForm(@ModelAttribute("newEntry") Entry entry, Model model, HttpServletRequest request, RedirectAttributes redirectAttrs){
@@ -163,7 +168,10 @@ public class TMSubmitterController {
                     String[] lineData = line.split(",");
                     TmAttendance entry = new TmAttendance();
 
+                    Block block=blockService.getBlockWithDate(LocalDate.parse(lineData[1], formatter));
+
                     Student s = studentService.getStudentByMumId(Long.parseLong(lineData[0]));
+
                     entry.setStudent(s);
 
                     //Date day = sFormat.parse(lineData[1]);
@@ -173,6 +181,8 @@ public class TMSubmitterController {
                     entry.setType(lineData[2] == "EAM" ? TmTimeSlot.EAM : TmTimeSlot.AM);
 
                     entry.setLocation(lineData[3]);
+
+                    entry.setBlock(block);
 
                     if(s != null)
                     {
@@ -195,6 +205,7 @@ public class TMSubmitterController {
             fileProcEntry.setDone(true);
             fileProcEntry.setEndTIme(LocalDateTime.now());
             fileProcessingService.Save(fileProcEntry);
+            ProcessStudentPercentages();
         }
         catch (Exception ex){
 
@@ -296,6 +307,7 @@ public class TMSubmitterController {
                     long sid = 0;
                     String sidString = lineData[1];
                     sid = Long.parseLong(sidString.replace("-", ""));
+                    //Block block=blockService.getBlockWithDate(LocalDate.parse(lineData[1], formatter));
 
                     Student s = studentService.getStudentByMumId(sid);
                     entry.setStudent(s);
@@ -307,6 +319,7 @@ public class TMSubmitterController {
                     entry.setType(TmTimeSlot.Manual);
 
                     entry.setLocation("--");
+                    //entry.setBlock(block);
 
                     if(s != null)
                     {
@@ -317,6 +330,8 @@ public class TMSubmitterController {
                     fileProcEntry.setProcessed(procRecsCounter);
                     fileProcEntry.setRowsCount(totalRows);
                     fileProcessingService.Save(fileProcEntry);
+                    ProcessStudentPercentages();
+
                 }
                 catch (Exception e){
                     System.out.println(e);
@@ -334,6 +349,26 @@ public class TMSubmitterController {
             System.out.println(ex.getMessage());
         }
 
+
+    }
+
+    private void ProcessStudentPercentages()
+    {
+        List<StudentTotals> studentsTotals= studentService.getAllStudentEnrolledBlocks();
+        List<StudentTotals> studentsAttendance= studentService.getAllStudentAttendanceCount();
+        for (StudentTotals totals:studentsTotals ) {
+            List<StudentTotals> sa=  studentsAttendance.stream().filter(x->x.getstudentID().equals(totals.getstudentID())).collect(Collectors.toList());
+            if(sa.size()!=0)
+            {
+                Student s=studentService.getStudentByMumId(totals.getstudentID());
+                Long attendedTotalSessions=sa.get(0).getTotalSessions();
+                String attendedTotalSessionsStr=attendedTotalSessions.toString();
+                String totalSessions=totals.getTotalSessions().toString();
+                s.setAttendedSessions(attendedTotalSessions);
+                s.setPercentage(Double.parseDouble(attendedTotalSessionsStr) / Double.parseDouble(totalSessions) * 100);
+                studentService.save(s);
+            }
+        }
 
     }
 
