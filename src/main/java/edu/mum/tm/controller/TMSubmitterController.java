@@ -371,7 +371,7 @@ public class TMSubmitterController {
                     s.setAttendedSessions(totals.getTotalSessions());
                     else
                     s.setAttendedSessions(attendedTotalSessions);
-                s.setPercentage(Double.parseDouble(attendedTotalSessionsStr) / Double.parseDouble(totalSessions) * 100);
+                s.setPercentage(Double.parseDouble(s.getAttendedSessions().toString()) / Double.parseDouble(totalSessions) * 100);
                 studentService.save(s);
             }
         }
