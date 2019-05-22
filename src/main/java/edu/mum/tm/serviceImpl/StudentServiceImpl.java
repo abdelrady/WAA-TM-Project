@@ -7,6 +7,7 @@ import edu.mum.tm.repository.*;
 import edu.mum.tm.service.StudentService;
 import edu.mum.tm.viewmodel.StudentStatistics;
 import edu.mum.tm.viewmodel.StudentTotalStats;
+import edu.mum.tm.viewmodel.StudentTotals;
 import org.apache.commons.collections.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,5 +85,20 @@ public class StudentServiceImpl implements StudentService {
 
     public Student getStudentByUserId(int userId) {
         return studentRepository.getStudentByUserId(userId);
+    }
+
+    @Override
+    public List<StudentTotals> getAllStudentEnrolledBlocks() {
+        return IteratorUtils.toList( studentRepository.getAllStudentEnrolledBlocks(StudentTotals.class).iterator());
+    }
+
+    @Override
+    public List<StudentTotals> getAllStudentAttendanceCount() {
+        return IteratorUtils.toList(studentRepository.getAllStudentAttendanceCount(StudentTotals.class).iterator());
+    }
+
+    @Override
+    public void save(Student student) {
+        studentRepository.save(student);
     }
 }
