@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
@@ -26,6 +27,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+//import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Controller
@@ -52,8 +54,25 @@ public class TMSubmitterController {
     private BlockService blockService;
 
     @GetMapping("/admin/TM")
-    public String getTMSubmitForm(@ModelAttribute("newEntry") Entry entry, Model model, HttpServletRequest request){
+    public String getTMSubmitForm(@ModelAttribute("newEntry") Entry entry, Model model, HttpServletRequest request, RedirectAttributes redirectAttrs){
+
+
+
         request.setAttribute("procId", 0);
+        return "TM/index";
+    }
+    @GetMapping("/admin/TMR")
+    public String getTMReSubmitForm(@ModelAttribute("procId") long procId, @ModelAttribute("newEntry") Entry entry, Model model, HttpServletRequest request, RedirectAttributes redirectAttrs){
+
+
+        try {
+            procId = Long.parseLong( request.getAttribute("procId").toString());
+        }
+        catch (Exception ex){
+            procId = 0;
+        }
+
+        request.setAttribute("procId", procId);
         return "TM/index";
     }
     public void logError(Exception ex) {
@@ -65,7 +84,7 @@ public class TMSubmitterController {
         log.error("----------------------------------------------------------");
     }
     @PostMapping("/admin/AddTMFile")
-    public String submitTMFile(@RequestParam("TMFile") MultipartFile file, Model model, HttpServletRequest request){
+    public String submitTMFile(@RequestParam("TMFile") MultipartFile file, Model model, HttpServletRequest request, RedirectAttributes redirectAttrs){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         filePath = request.getServletContext().getRealPath("/") + "TempFile\\";// + LocalDateTime.now().format(formatter);
 
@@ -116,8 +135,8 @@ public class TMSubmitterController {
                 addTMFile(filePath, procId);
             }
         }).start();
-        request.setAttribute("procId", procId);
-        return "TM/index";
+        redirectAttrs.addFlashAttribute("procId", procId);
+        return "redirect:TMR";
     }
 
     @Async
@@ -200,7 +219,7 @@ public class TMSubmitterController {
 
 
     @PostMapping("/admin/AddManualTMFile")
-    public String submitMTMFile(@RequestParam("TMFile") MultipartFile file, Model model, HttpServletRequest request){
+    public String submitMTMFile(@RequestParam("TMFile") MultipartFile file, Model model, HttpServletRequest request, RedirectAttributes redirectAttrs){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         filePath = request.getServletContext().getRealPath("/") + "TempFile\\";// + LocalDateTime.now().format(formatter);
 
@@ -249,8 +268,11 @@ public class TMSubmitterController {
                 addMTMFile(filePath, procId);
             }
         }).start();
-        request.setAttribute("procId", procId);
-        return "TM/index";
+
+        redirectAttrs.addFlashAttribute("procId", procId);
+
+
+        return "redirect:TMR";
     }
 
     @Async
