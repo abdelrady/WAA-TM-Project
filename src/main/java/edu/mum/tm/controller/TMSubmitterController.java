@@ -274,8 +274,6 @@ public class TMSubmitterController {
         }).start();
 
         redirectAttrs.addFlashAttribute("procId", procId);
-
-
         return "redirect:TMR";
     }
 
@@ -348,6 +346,7 @@ public class TMSubmitterController {
 
             }
 
+            fileProcEntry.setDone(true);
             fileProcEntry.setProcessed(procRecsCounter);
             fileProcEntry.setRowsCount(totalRows);
             fileProcessingService.Save(fileProcEntry);
