@@ -193,6 +193,7 @@ public class TMSubmitterController {
                     fileProcEntry.setProcessed(procRecsCounter);
                     fileProcEntry.setRowsCount(totalRows);
                     fileProcessingService.Save(fileProcEntry);
+                    ProcessStudentPercentages();
                 }
                 catch (Exception e){
                     logError(e);
@@ -340,11 +341,16 @@ public class TMSubmitterController {
                     System.out.println(e);
                 }
 
-                fileProcEntry.setDone(true);
-                fileProcEntry.setEndTIme(LocalDateTime.now());
+
+                fileProcEntry.setProcessed(procRecsCounter);
+                fileProcEntry.setRowsCount(totalRows);
                 fileProcessingService.Save(fileProcEntry);
 
             }
+
+            fileProcEntry.setProcessed(procRecsCounter);
+            fileProcEntry.setRowsCount(totalRows);
+            fileProcessingService.Save(fileProcEntry);
 
         }
         catch (Exception ex){
