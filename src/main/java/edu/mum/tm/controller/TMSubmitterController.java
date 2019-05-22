@@ -161,7 +161,7 @@ public class TMSubmitterController {
             while ((line = b.readLine()) != null) {
                 totalRows++;
 
-                Thread.sleep(1);
+                //Thread.sleep(1);
                 try {
                     System.out.println("Linke "  + i++ + " : ");
                     //System.out.println(line);
@@ -199,6 +199,9 @@ public class TMSubmitterController {
                     System.out.println(e);
                 }
 
+                fileProcEntry.setProcessed(procRecsCounter);
+                fileProcEntry.setRowsCount(totalRows);
+                fileProcessingService.Save(fileProcEntry);
 
             }
 
