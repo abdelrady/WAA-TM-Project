@@ -11,11 +11,13 @@
     <h1>Entry Report</h1>
     <br/>
     <div class="row">
-        <div class="col">
-            <select th:field="${entries}" id="entryselect">
-                <option value="0">select entry</option>
-                <option th:each="entry : ${entries}" th:value="${entry}" th:text="${entry}"></option>
-            </select>
+        <div class="col-9 form-group">
+            <div class="pb_select-wrap">
+                <select th:field="${entries}" id="entryselect" class="form-control pb_height-50 reverse">
+                    <option value="0" selected>select entry</option>
+                    <option th:each="entry : ${entries}" th:value="${entry}" th:text="${entry}"></option>
+                </select>
+            </div>
         </div>
     </div>
 <br/>

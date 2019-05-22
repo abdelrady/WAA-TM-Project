@@ -11,7 +11,7 @@
 <div class="container text-center" layout:fragment="main-content">
     <h2 class = "text-primary">TM Retreat</h2>
     <br>
-    <button data-toggle="modal" data-target="#myModal">Add new Retreat</button>
+    <button data-toggle="modal" class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue" data-target="#myModal">Add new Retreat</button>
     <br>
     <br />
     <table class="table table-striped">
@@ -27,7 +27,7 @@
             <td>
                 <!--  how to send this object to back end-->
                 <form th:action="@{/admin/deleteitem/__${retreat.Id}__/__${retreat.studentId}__/__${retreat.date}__}"  th:object="${retreat}" method="POST">
-                    <input type="submit" value="delete" />
+                    <input type="submit" value="delete" class="btn btn-secondary" />
                 </form>
             </td>
         </tr>
@@ -37,7 +37,7 @@
 
 
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade show" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

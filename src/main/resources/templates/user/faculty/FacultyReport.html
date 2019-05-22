@@ -10,10 +10,16 @@
     <h2>Course/Block Extra Credits</h2>
     <input type="hidden" th:value="${faculty.id}" class="faculty-id"/>
     <label>Select Block/Course</label>
-    <select id="blocks-select">
-        <option value="">Select Course/Block</option>
-        <option th:each="b : ${faculty.courses}" th:value="${b.id}" th:text="${b.name}"></option>
-    </select>
+    <div class="row">
+        <div class="col-9 form-group">
+            <div class="pb_select-wrap">
+                <select id="blocks-select" class="form-control pb_height-50 reverse">
+                    <option value="">Select Course/Block</option>
+                    <option th:each="b : ${faculty.courses}" th:value="${b.id}" th:text="${b.name}"></option>
+                </select>
+            </div>
+        </div>
+    </div>
     <br/>
     <br/>
     <div class="results">

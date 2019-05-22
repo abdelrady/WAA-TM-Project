@@ -38,11 +38,18 @@
         <tbody>
         <tr>
             <td>Select Block</td>
-            <td>
-                <select id="blocks-select">
-                    <option value="">Select Block</option>
-                    <option th:attr="data-sessions=${b.totalSessions}" th:each="b : ${blocks}" th:value="${b.id}" th:text="${b.MMYY}"></option>
-                </select>
+            <td style="widht: 75%;">
+
+                <div class="row">
+                    <div class="col-9 form-group">
+                        <div class="pb_select-wrap">
+                            <select id="blocks-select" class="form-control pb_height-50 reverse">
+                                <option value="">Select Course/Block</option>
+                                <option th:attr="data-sessions=${b.totalSessions}" th:each="b : ${blocks}" th:value="${b.id}" th:text="${b.MMYY}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </td>
         </tr>
         <tr>

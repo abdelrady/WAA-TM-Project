@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layouts/default_layout}"
-      xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">>
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>TM Uploader</title>
     <meta charset="utf-8"/>
 
-    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}"/>
+<!--    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}"/>-->
     <script  th:inline="javascript">
         var procId = /*[[${procId}]]*/ 0;
         var data = {"proc": procId};
@@ -70,8 +70,12 @@
     <div>
         <form action="#" th:action="@{AddTMFile}" enctype="multipart/form-data" method="post">
             <label for="TMFile" >Select file:</label>
-            <input type="file" id="TMFile" class="TMFile" name="TMFile" />
-            <input type="submit" value="Upload" />
+            <div class="form-group">
+                <input type="file" id="TMFile" class="TMFile form-control py-3 reverse" name="TMFile" style="height: 60px;margin: 10px;" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Upload" class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue" />
+            </div>
         </form>
     </div>
 
@@ -82,8 +86,13 @@
     <div>
         <form action="#" th:action="@{AddManualTMFile}" enctype="multipart/form-data" method="post">
             <label for="TMFile" >Select file:</label>
-            <input type="file" id="TMFile" class="TMFile" name="TMFile" />
-            <input type="submit" value="Upload" />
+            <div class="form-group">
+                <input type="file" id="TMFile" class="TMFile form-control py-3 reverse" name="TMFile" style="height: 60px;margin: 10px;" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Upload" class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue" />
+            </div>
         </form>
     </div>
 </div>
